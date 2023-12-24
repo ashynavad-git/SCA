@@ -9,11 +9,14 @@ pool:
   name: Default
 steps:
 
+
     
 - task: Bash@3
   displayName: 'Veracode SCA scan'
   inputs:
      targetType: 'inline'
      script: |
+          export SRCCLR_API_TOKEN="$(SRCCLR_API_TOKEN)"
           curl -sSL https://download.sourceclear.com/ci.sh | sh
-
+  env:
+    SRCCLR_API_TOKEN: $(SRCCLR_API_TOKEN)
