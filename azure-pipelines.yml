@@ -15,5 +15,5 @@ steps:
   inputs:
      targetType: 'inline'
      script: |
-          curl -sSL https://download.sourceclear.com/ci.sh | bash -s -- scan --update-advisor
+          curl -sSL https://download.sourceclear.com/ci.sh | sh
 
