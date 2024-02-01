@@ -18,5 +18,5 @@ steps:
      script: |
           export SRCCLR_API_TOKEN="$(SRCCLR_API_TOKEN)"
           curl -sSL https://download.sourceclear.com/ci.sh | sh
-  env:
-    SRCCLR_API_TOKEN: $(SRCCLR_API_TOKEN)
+  # env:
+  #   SRCCLR_API_TOKEN: $(SRCCLR_API_TOKEN)
