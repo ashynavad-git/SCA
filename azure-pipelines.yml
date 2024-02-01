@@ -17,6 +17,7 @@ steps:
   inputs:
      targetType: 'inline'
      script: |
-          export SRCCLR_API_TOKEN="$(SECRET)"
+      
           curl -sSL https://download.sourceclear.com/ci.sh | sh
 
+    # export SRCCLR_API_TOKEN="$(SECRET)"
