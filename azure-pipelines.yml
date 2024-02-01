@@ -5,18 +5,18 @@
 
 trigger:
 - main
+
 pool:
   name: Default
+  env:
+    SRCCLR_API_TOKEN: $(SECRET)
 steps:
-
-
     
 - task: Bash@3
   displayName: 'Veracode SCA scan'
   inputs:
      targetType: 'inline'
      script: |
-          export SRCCLR_API_TOKEN="$(SECRET)"
+          export SRCCLR_API_TOKEN="$(env.SRCCLR_API_TOKEN)"
           curl -sSL https://download.sourceclear.com/ci.sh | sh
-  # env:
-  #   SRCCLR_API_TOKEN: $(SRCCLR_API_TOKEN)
+
