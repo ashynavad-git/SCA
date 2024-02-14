@@ -8,8 +8,6 @@ trigger:
 
 pool:
   name: Default
-  env:
-    SRCCLR_API_TOKEN: $(SECRET)
 
 steps:   
 - task: Bash@3
@@ -17,6 +15,6 @@ steps:
   inputs:
      targetType: 'inline'
      script: |
-          export SRCCLR_API_TOKEN=$env
+          export SRCCLR_API_TOKEN=$SECRET
           curl -sSL https://download.sourceclear.com/ci.sh | sh
         
