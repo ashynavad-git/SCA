@@ -10,11 +10,24 @@ pool:
   name: Default
 
 steps:   
-- task: Bash@3
-  displayName: 'Veracode SCA scan'
+# - task: Bash@3
+#   displayName: 'Veracode SCA scan'
+#   inputs:
+#      targetType: 'inline'
+#      script: |
+#           export SRCCLR_API_TOKEN=$SECRET
+#           curl -sSL https://download.sourceclear.com/ci.sh | sh
+
+- task: Veracode Flaw Importer@3
   inputs:
-     targetType: 'inline'
-     script: |
-          export SRCCLR_API_TOKEN=$SECRET
-          curl -sSL https://download.sourceclear.com/ci.sh | sh
+    ConnectionDetailsSelection: 'Service Connection'
+    veracodeAppProfile: 'Azure-SCA'
+    scanType: 'SCA'
+    importType: 'All Flaws'
+    workItemType: 'Bug'
+    area: '$(system.teamProject)'
+    overwriteAreaPathInWorkItemsOnImport: true
+    iterationPath: '$(system.teamProject)'
+    overwriteIterationPath: true
+    flawImportLimit: '10'
         
