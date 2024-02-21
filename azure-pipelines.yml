@@ -15,7 +15,7 @@ steps:
   inputs:
      targetType: 'inline'
      script: |
-          export SRCCLR_API_TOKEN=$SECRET
+          export SRCCLR_API_TOKEN=$(SRCCLR_API_TOKEN)
           curl -sSL https://download.sourceclear.com/ci.sh | sh
 
 # - task: Veracode Flaw Importer@3
