@@ -10,13 +10,21 @@ pool:
   name: Default
 
 steps:   
+# - task: Bash@3
+#   displayName: 'Veracode SCA scan'
+#   inputs:
+#      targetType: 'inline'
+#      script: |
+#           export SRCCLR_API_TOKEN=$(SRCCLR_API_TOKEN)
+#           curl -sSL https://download.sourceclear.com/ci.sh | sh
+
 - task: Bash@3
-  displayName: 'Veracode SCA scan'
   inputs:
-     targetType: 'inline'
-     script: |
-          export SRCCLR_API_TOKEN=$(SRCCLR_API_TOKEN)
-          curl -sSL https://download.sourceclear.com/ci.sh | sh
+    targetType: 'inline'
+    script: |
+      curl -sSL https://download.sourceclear.com/install | sh
+      echo $(SRCCLR_API_TOKEN) | srcclr activate
+      srcclr scan . --debug
 
 # - task: Veracode Flaw Importer@3
 #   inputs:
